@@ -70,9 +70,22 @@ Fill out form and click SUBMIT:
 		mysqli_query($con,$sql);
 		
 		
+		//random number generator
+		$random_sales_num = rand();
+		
+		$sql = "SELECT * FROM `sales` WHERE `SALES_NUM` = '{$random_sales_num}'";
+		$result = mysqli_query($con,$sql);
+		
+		while ((!$result || mysqli_num_rows($result) != 0 ))
+		{
+			$random_sales_num = rand();
+			$sql = "SELECT * FROM `sales` WHERE `SALES_NUM` = '{$random_sales_num}'";
+			$result = mysqli_query($con,$sql);
+		}
+		
 		//add to sales 
-		$sql = "INSERT INTO sales(BARCODE,PURCHASE_DATE,CUSTOMER_EMAIL, BUYPRICE,INFO,MARKPRICE,NAME,NUM,SELLPRICE,TYPE) 
-		VALUES ('{$row[0]}','{$date}','{$_POST["EMAIL"]}','{$row[5]}','{$row[4]}','{$row[7]}','{$row[2]}','{$row[1]}','{$row[6]}','{$row[3]}')";
+		$sql = "INSERT INTO sales(BARCODE,PURCHASE_DATE,CUSTOMER_EMAIL, BUYPRICE,INFO,MARKPRICE,NAME,NUM,SELLPRICE,TYPE,SALES_NUM) 
+		VALUES ('{$row[0]}','{$date}','{$_POST["EMAIL"]}','{$row[5]}','{$row[4]}','{$row[7]}','{$row[2]}','{$row[1]}','{$row[6]}','{$row[3]}','{$random_sales_num}')";
 		$result = mysqli_query($con,$sql);
 		
 		if(!$result)
@@ -93,6 +106,7 @@ Fill out form and click SUBMIT:
 <thead>
 
 	<tr>
+		<th>SALES NUMBER</th>
 		<th>BARCODE</th>
 		<th>NUMBER</th>
 		<th>NAME</th>
@@ -114,6 +128,7 @@ Fill out form and click SUBMIT:
       // output all products currently in sale
 			while($row = mysqli_fetch_array($result) ){ 
 				echo "<tr>";
+				echo "<td>".$row['SALES_NUM']."</td>";
 				echo "<td>".$row['BARCODE']."</td>";
 				echo "<td>".$row['NUM']."</td>";
 				echo "<td>".$row['NAME']."</td>";

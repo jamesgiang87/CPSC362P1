@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2018 at 08:58 PM
+-- Generation Time: Dec 07, 2018 at 01:45 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -44,8 +44,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`BARC`, `NUM`, `NAME`, `TYPE`, `INFO`, `BUYPRICE`, `SELLPRICE`, `MARKPRICE`) VALUES
-(2, '2', '2', '2', '2', 2, 2, 2),
-(8, '8', '8', '8', '8', 8, 8, 8);
+(2, '2', '2', '2', '2', 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`loc`, `oc`, `itnum`) VALUES
-('A1X11', 0, 'null'),
+('A1X11', 1, '242'),
 ('A1X12', 1, '2'),
 ('A1X13', 1, '8'),
 ('A1X21', 1, '1555'),
@@ -801,15 +800,17 @@ CREATE TABLE `sales` (
   `NAME` text NOT NULL,
   `NUM` varchar(45) NOT NULL,
   `SELLPRICE` float NOT NULL,
-  `TYPE` varchar(45) NOT NULL
+  `TYPE` varchar(45) NOT NULL,
+  `SALES_NUM` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`BARCODE`, `PURCHASE_DATE`, `CUSTOMER_EMAIL`, `BUYPRICE`, `INFO`, `MARKPRICE`, `NAME`, `NUM`, `SELLPRICE`, `TYPE`) VALUES
-(123456, '2018-12-05', 'lordkoolkid@email.com', 10, 'SuperKool', 1337, 'GTX 4000', '1555', 4000, 'GPU');
+INSERT INTO `sales` (`BARCODE`, `PURCHASE_DATE`, `CUSTOMER_EMAIL`, `BUYPRICE`, `INFO`, `MARKPRICE`, `NAME`, `NUM`, `SELLPRICE`, `TYPE`, `SALES_NUM`) VALUES
+(8, '2018-12-06', 'lordkoolkid@email.com', 8, '8', 8, '8', '8', 8, '8', 1705147326),
+(123456, '2018-12-06', 'loserboi@email.com', 10, 'SuperKool', 1337, 'GTX 4000', '1555', 4000, 'GPU', 1763184136);
 
 -- --------------------------------------------------------
 
@@ -833,7 +834,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, ' Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2018-12-05 05:26:44'),
+(1, ' Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2018-12-07 01:39:56'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2018-11-27 09:49:37'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2018-11-26 20:54:18');
 
@@ -874,6 +875,12 @@ ALTER TABLE `inventory`
 --
 ALTER TABLE `location`
   ADD UNIQUE KEY `loc` (`loc`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`SALES_NUM`);
 
 --
 -- Indexes for table `users`

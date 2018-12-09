@@ -23,4 +23,15 @@
         <li><a href="inventorysum.php">Inventory Current Value </a></li>
       </ul>
   </li>
+    
+    <li>
+        <a href="#" class="submenu-toggle">
+            <i class="glyphicon glyphicon-barcode"></i>
+            <span>Orders</span>
+        </a>
+        <ul class="nav submenu">
+            <li><a href="vieworder.php">View Orders</a></li>
+</ul>
+    </li>
+
 </ul>

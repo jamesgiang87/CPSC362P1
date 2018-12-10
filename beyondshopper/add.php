@@ -42,8 +42,7 @@ Fill out form and click SUBMIT:
 <label id="first"> Sellprice:</label><br>
 <input type="text" name="SELLPRICE"><br/>
 
-<label id="first"> Markprice:</label><br>
-<input type="text" name="MARKPRICE"><br/>
+
 
 <button type="submit" name="save">SUBMIT</button>
 
@@ -65,8 +64,8 @@ Fill out form and click SUBMIT:
 		
 		if(isset($_POST['save'])){
 			
-			$sql = "INSERT INTO inventory (BARC, NUM, NAME, TYPE, INFO,  BUYPRICE, SELLPRICE, MARKPRICE)
-			VALUES ('".$_POST["BARC"]."','".$_POST["NUM"]."','".$_POST["NAME"]."','".$_POST["TYPE"]."','".$_POST["INFO"]."','".$_POST["BUYPRICE"]."','".$_POST["SELLPRICE"]."','".$_POST["MARKPRICE"]."')";
+			$sql = "INSERT INTO inventory (BARC, NUM, NAME, TYPE, INFO,  BUYPRICE, SELLPRICE)
+			VALUES ('".$_POST["BARC"]."','".$_POST["NUM"]."','".$_POST["NAME"]."','".$_POST["TYPE"]."','".$_POST["INFO"]."','".$_POST["BUYPRICE"]."','".$_POST["SELLPRICE"]."')";
             
            
 			

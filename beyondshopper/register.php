@@ -121,7 +121,7 @@
                     
 					$query = "INSERT INTO customer (FNAME, LNAME, PHONE, EMAIL, UNAME, UPASS, ADDR, CITY, STATE, ZIP, APTNUM) VALUES('$fname','$lname','$phonenumber','$email','$username','$password','$address','$city','$state','$zip','$apartment');";
         
-                    $query .= "INSERT INTO users (name, username, password, user_level, image, status) VALUES ('Default User', '$username','$hashedpw', '3', 'no_image.jpg', '1')";
+                    $query .= "INSERT INTO users (name, username, password, user_level, image, status) VALUES ('Customer User', '$username','$hashedpw', '3', 'no_image.jpg', '1')";
                     
         
             $addcust = mysqli_multi_query($con,$query);
@@ -130,6 +130,7 @@
             if($addcust)
 				{
                 echo '<script type="text/javascript"> alert("Account created. Please go back to the login page.") </script>';
+                echo '<script>window.location.href = "index.php";</script>';
 				}
         else
 				{

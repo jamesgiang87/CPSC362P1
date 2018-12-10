@@ -19,6 +19,21 @@
 </head>
 <h1>Inventory:</h1>
 <body>
+	
+Search:
+<form action="" method="post">
+<input name="search" type="search" placeholder="Search All" autofocus>
+<input type="submit" name="button" onclick="location='product.php'">
+<input type="button" value="Refresh" onclick="location='product.php'" />
+</form></br>
+
+Check Product Quantity:
+<form action="" method="post">
+<input name="sum" type="search" placeholder="Enter Barcode" >
+<input type="submit" name="SumButton" onclick="location='product.php'">
+<input type="button" value="Refresh" onclick="location='product.php'" />
+</form></br>	
+	
 <table class="table table-striped table-bordered table-hover table-condensed">
 <thead>
 
@@ -31,7 +46,7 @@
 		<th>LOCATION</th>
 		<th>BUYPRICE</th>
 		<th>SELLPRICE</th>
-		<th>MARKPRICE</th>
+
 	</tr>
 </thead>
 <tbody>
@@ -47,11 +62,58 @@
         $loca =mysqli_query($con,$sql2);
       
 
+	
+	
+	        if(isset($_POST['SumButton'])){	
+			$sum=$_POST['sum'];
+			$data = "SELECT * FROM inventory WHERE BARC = '{$sum}'";
+			$query=mysqli_query($con,$data);
+			$numRows = mysqli_num_rows($query);
+				echo '<h2>'."Barcode Entered: ".$sum;
+				echo "<br>Quantity = ".$numRows.'</h2>';
+                
+		}
+	  
+		if(isset($_POST['button'])){    //trigger button click
+			$search=$_POST['search'];
+			$data = "SELECT * FROM inventory, location WHERE num = itnum && BARC = '{$search}' || NUM = '{$search}'
+				|| NAME = '{$search}' || TYPE = '{$search}' || INFO = '{$search}'
+				|| loc = '{$search}' || BUYPRICE = '{$search}' || SELLPRICE = '{$search}' Group by num ";
+			$query=mysqli_query($con,$data);
+            
+            
+            $count=0;
+	
+			// outputs results from search
+			while($row = mysqli_fetch_array($query)){
+                
+				echo "<tr>";
+				echo "<td>".$row['BARC']."</td>";
+				echo "<td>".$row['NUM']."</td>";
+				echo "<td>".$row['NAME']."</td>";
+				echo "<td>".$row['TYPE']."</td>";
+				echo "<td>".$row['INFO']."</td>";
+                $sql5 = "SELECT * FROM location WHERE itnum = '".$row['NUM']."'  ";
+                $query1=mysqli_query($con,$sql5);
+                $row1 = mysqli_fetch_array($query1);
+				echo "<td>".$row1['loc']."</td>";
+				echo "<td>".$row['BUYPRICE']."</td>";
+				echo "<td>".$row['SELLPRICE']."</td>";
+				
+				//echo "<td>".$row['QUANTITY']."</td>";
+				echo "<td><a href=delete.php?id=".$row['BARC'].">DELETE</a></td>";
+                $count = $count + 1;
+			}
+		}
+
+	
+	
+	
+	
+	else{
 			// output all products currently in inventory
 			while($row = mysqli_fetch_array($loca) ){
-                
-               
-                
+                                
 				echo "<tr>";
 				echo "<td>".$row['BARC']."</td>";
 				echo "<td>".$row['NUM']."</td>";
@@ -61,9 +123,10 @@
                 echo "<td>".$row['loc']."</td>";
 				echo "<td>".$row['BUYPRICE']."</td>";
 				echo "<td>".$row['SELLPRICE']."</td>";
-				echo "<td>".$row['MARKPRICE']."</td>";
+		
 				echo "<td><a href=delete.php?id=".$row['BARC'].">DELETE</a></td>"; // delete product - links to 'delete.php'
 			}
+	}
 	?>
 </table>
 

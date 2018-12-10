@@ -6,13 +6,26 @@
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+<?php echo display_msg($msg); ?>
   </div>
  <div class="col-md-12">
     <div class="panel">
       <div class="jumbotron text-center">
-         <h1>Home Page</h1>
-         <p>User account page</p>
+<?php $user = current_user();
+    if($user['user_level'] === '1'){
+    echo  "<h1>Home Page</h1>";
+    echo  "    <p>Admin account page</p>" ;
+    }
+ if($user['user_level'] === '2'){
+    echo  "<h1>Home Page</h1>";
+    echo  "    <p>Employee account page</p>" ;
+ }
+    if($user['user_level'] === '3'){
+        echo  "<h1>Home Page</h1>";
+        echo  "    <p>Customer account page</p>" ;
+    }
+    
+ ?>
       </div>
     </div>
  </div>

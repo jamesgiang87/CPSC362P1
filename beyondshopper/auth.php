@@ -4,6 +4,7 @@ $req_fields = array('username','password' );
 validate_fields($req_fields);
 $username = remove_junk($_POST['username']);
 $password = remove_junk($_POST['password']);
+$_SESSION['username'] = $username;
 
 if(empty($errors)){
   $user_id = authenticate($username, $password);
@@ -12,7 +13,7 @@ if(empty($errors)){
      $session->login($user_id);
     //Update Sign in time
      updateLastLogIn($user_id);
-     $session->msg("s", "Welcome to Beyond Shopper.");
+     $session->msg("s", "Welcome to Beyond Shoppers.");
      redirect('home.php',false);
 
   } else {

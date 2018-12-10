@@ -13,6 +13,17 @@
 <li><a href="location.php">location</a> </li>
 <li><a href="search location.php">search location</a> </li>
 
+
+</ul>
+</li>
+
+<li>
+<a href="#" class="submenu-toggle">
+<i class="glyphicon glyphicon-usd"></i>
+<span>Manage Sales</span>
+</a>
+<ul class="nav submenu">
+<li><a href="sales.php">Make a Sale</a> </li>
 </ul>
 </li>
 
@@ -26,13 +37,15 @@
 </ul>
 </li>
 
+
+
 <li>
 <a href="#" class="submenu-toggle">
-<i class="glyphicon glyphicon-time"></i>
-<span>Clocking System</span>
+<i class="glyphicon glyphicon-user"></i>
+<span>Manage Employees</span>
 </a>
 <ul class="nav submenu">
-<li><a href="clockingsystem.php">Clock In And Out </a></li>
+<li><a href="employee.php">Add/Delete Employee</a></li>
 </ul>
 </li>
 

@@ -49,6 +49,7 @@ if (($name == NULL) || ($name == "")) {
 }
 
 // Get current time & date
+date_default_timezone_set('America/Los_Angeles');
 $time = date("Y-m-d H:i:s");
 $date = date("Y-m-d");
 

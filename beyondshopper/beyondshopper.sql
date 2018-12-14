@@ -840,6 +840,26 @@ INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VA
 (3, 'User', 3, 1);
 
 --
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `CID` int(11) NOT NULL,
+  `FNAME` text NOT NULL,
+  `LNAME` text NOT NULL,
+  `PHONE` int(10) NOT NULL,
+  `EMAIL` text NOT NULL,
+  `UNAME` text NOT NULL,
+  `UPASS` text NOT NULL,
+  `ADDR` text NOT NULL,
+  `CITY` text NOT NULL,
+  `STATE` text NOT NULL,
+  `ZIP` varchar(6) NOT NULL,
+  `APTNUM` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Indexes for dumped tables
 --
 
@@ -872,6 +892,12 @@ ALTER TABLE `user_groups`
   ADD UNIQUE KEY `group_level` (`group_level`);
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`CID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -886,6 +912,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
 
 --
 -- Constraints for dumped tables
